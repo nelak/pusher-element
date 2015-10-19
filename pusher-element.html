@@ -1,0 +1,83 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="dependencies.html">
+
+<!--
+An element that provides a wrapper over the pusher client functionality
+
+Example:
+
+    <pusher-element></pusher-element>
+
+@group Seed Elements
+@element pusher-element
+@demo demo/index.html
+@hero hero.svg
+-->
+<dom-module id="pusher-element">
+  <template>
+    <style>
+    </style>
+ </template>
+  <script>
+    (function () {
+      'use strict';
+      Polymer({
+        is: 'pusher-element',
+        properties: {
+          /**
+           * Pusher application key
+           */
+          applicationKey: {
+            type: String,
+            notify: true
+          },
+          /**
+           * Pusher client options
+           */
+          options: {
+            type: Object,
+            notify: true,
+            value: {}
+          },
+
+          _pusher:{
+            type: Object
+          }
+        },
+
+        // Element Lifecycle
+        ready: function () {
+          this._pusher = new Pusher(this.applicationKey, this.options);
+        },
+
+        // Element Behavior
+
+        /**
+         * Subscribe to pusher channel
+         */
+        subscribe: function(channel){
+          return this._pusher.subscribe(channel);
+        },
+
+        /**
+         * Bind to event (Events are wrapped as polymer events)
+         * @param {String} eventName Name of the event to bind
+         */
+        bind: function(eventName){
+          return this._pusher.connection.bind(eventName, function(){
+
+            var args = new Array(arguments.length);
+            for (var i = 0; i < args.length; i++) {
+              args[i] = arguments[i];
+            }
+
+            args.unshift(event);
+
+            this.fire.apply(this, args);
+          });
+        }
+      });
+    })();
+  </script>
+
+</dom-module>

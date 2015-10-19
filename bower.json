@@ -1,0 +1,33 @@
+{
+  "name": "pusher-element",
+  "version": "0.0.1",
+  "authors": [
+    "oss@e107.com.ar"
+  ],
+  "description": "Element wrapper for pusher client",
+  "keywords": [
+    "web-component",
+    "polymer",
+    "pusher"
+  ],
+  "main": "pusher-element.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "",
+  "ignore": [
+    "/.*",
+    "/test/",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.1.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "*"
+  },
+  "moduleType": []
+}
